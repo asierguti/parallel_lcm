@@ -14,6 +14,10 @@ void worker::run() {
     if (number == 0) {
       break;
     }
+
+    if (number == 1) {
+      continue;
+    }
     
     auto primes = m_primes->factor_primes(number);
     mergeResult(primes);
