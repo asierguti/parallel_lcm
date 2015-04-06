@@ -22,4 +22,4 @@ A simple CMake file is supplied. You can just compile it as
 >make
 
 Alternatively, you can compile it like
-><g++ or clang++>  -std=gnu++11 -Wall -Wextra -pedantic -pthread math.cpp parallel_lcm.cpp queue.cpp worker.cpp -o test -lgmp -lgmpxx
+><<g++ or clang++>>  -std=gnu++11 -Wall -Wextra -pedantic -pthread math.cpp parallel_lcm.cpp queue.cpp worker.cpp -o test -lgmp -lgmpxx
