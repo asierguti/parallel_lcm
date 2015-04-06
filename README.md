@@ -18,6 +18,7 @@ The code is written in C++11 style, so you will need a compiler that supports it
 ##How do I compile it?
 A simple CMake file is supplied. You can just compile it as
 >cmake .
+>
 >make
 
 Alternatively, you can compile it like
