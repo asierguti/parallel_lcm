@@ -116,7 +116,7 @@ mpz_class primes::pollard_p1(mpz_class &n) {
   mpz_class g;
   c--;
   gcd(g, c, n);
-  if (g > 1 && g < n) {
+  if (g > 1 && g <= n) {
     return g;
   }
   return 1;
@@ -219,8 +219,8 @@ void primes::factor(mpz_class &n, std::vector<mpz_class> &factors) {
     if (n1 == 1) { // unable to factor in time
       std::cout << "fail" << std::endl;
       factors.clear();
-
-    } else { // continue factor problem
+    }
+     else { // continue factor problem
       n2 = n / n1;
       factor(n1, factors);
       if (factors.size() != 0 && n2 != 1) { // in case of failure
@@ -232,7 +232,7 @@ void primes::factor(mpz_class &n, std::vector<mpz_class> &factors) {
 
 std::vector <uint64_t> primes::factor_primes (uint64_t number)
 {
-  mpz_class test(static_cast<double> (number));
+  mpz_class test(number);//static_cast<double> (number));
 
   std::vector<mpz_class> factors;
   factors.reserve(30);

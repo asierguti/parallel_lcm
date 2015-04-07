@@ -6,6 +6,7 @@
 #include <vector>
 #include <cstdlib>
 #include <iostream>
+#include <chrono>
 
 #include "worker.h"
 #include "queue.h"
@@ -28,29 +29,19 @@ int main() {
     workers.emplace_back(std::make_shared<worker>(q, m));
   }
 
-  std::cout << "Please enter the number of numbers to process" << std::endl;
-
-  int num_numbers;
-  std::cin >> num_numbers;
-
-  std::cout << "OK, we are going to calculate the LCM for " << num_numbers << " numbers. Please, enter the numbers now" << std::endl;
-
   uint64_t number;
 
   for (auto &w : workers) {
     threads.push_back(std::thread(std::bind(&worker::run, w)));
   }
 
-  while (num_numbers) {
-    std::cin >> number;
+  while (std::cin >> number) {//num_numbers) {
     q.push(number);
-
-    --num_numbers;
   }
 
   q.stop();
 
-  std::cout << "Done factorizing" << std::endl;
+  std::cout << "Done reading all the numbers" << std::endl;
 
   for (auto &t : threads) {
     t.join();
@@ -64,7 +55,10 @@ int main() {
 
   auto map_results = q.getResult();
 
-  //  uint64_t result = 1;
+  if (map_results.size() == 0) {
+    std::cerr << "Ooop, there has been a problem. Please try again" << std::endl;
+    return -1;
+  }
 
   auto it = map_results.begin();
 
