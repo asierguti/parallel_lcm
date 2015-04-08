@@ -10,7 +10,9 @@
 class primes {
 public:
   primes();
-  ~primes(){};
+  ~primes(){
+    gmp_randclear (m_r_state);
+  };
 
   std::vector <uint64_t> factor_primes (uint64_t number);
 
